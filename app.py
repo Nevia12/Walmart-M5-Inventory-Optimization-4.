@@ -1632,5 +1632,43 @@ with tab_warehouse:
     )
 
     st.success("Final simulation comparison section loaded!")
+    # Final holdout simulation results
 
+    st.subheader("Final Holdout Performance")
+
+    final_results = pd.DataFrame({
+        "Policy": [
+            "Traditional Baseline",
+            "Inventory-Matched ABC"
+        ],
+        "Stockout Frequency (%)": [26.15, 20.92],
+        "Fill Rate (%)": [74.21, 80.57],
+        "Average Inventory": [149107, 149123]
+    })
+
+    st.dataframe(final_results, hide_index=True)
+
+    st.subheader("Stockout Frequency Comparison")
+
+    st.bar_chart(
+        final_results.set_index("Policy")[
+            "Stockout Frequency (%)"
+        ]
+    )
+
+    st.subheader("Fill Rate Comparison")
+
+    st.bar_chart(
+        final_results.set_index("Policy")[
+            "Fill Rate (%)"
+        ]
+    )
+
+    st.subheader("Average Inventory Comparison")
+
+    st.bar_chart(
+        final_results.set_index("Policy")[
+            "Average Inventory"
+        ]
+    )
 
