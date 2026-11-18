@@ -1555,4 +1555,65 @@ with tab_warehouse:
         "holdout results to tune the proposed policy."
     )
 
+    # ============================================
+    # STEP 61: FINAL INVENTORY SIMULATION
+    # ============================================
+
+    st.divider()
+
+    st.subheader("Final Inventory Simulation Comparison")
+
+    st.write(
+        "The traditional baseline and proposed ABC "
+        "inventory policy were evaluated using "
+        "193 days of holdout testing data."
+    )
+
+    simulation_data = pd.DataFrame({
+        "Policy": [
+            "Traditional Baseline",
+            "Inventory-Matched ABC"
+        ],
+        "Stockout Frequency (%)": [26.15, 20.92],
+        "Fill Rate (%)": [74.21, 80.58],
+        "Average Inventory": [149107, 149123]
+    })
+
+    st.dataframe(
+        simulation_data,
+        hide_index=True,
+        use_container_width=True
+    )
+
+    st.subheader("Stockout Frequency Comparison")
+
+    st.bar_chart(
+        simulation_data.set_index("Policy")[
+            "Stockout Frequency (%)"
+        ]
+    )
+
+    st.subheader("Fill Rate Comparison")
+
+    st.bar_chart(
+        simulation_data.set_index("Policy")[
+            "Fill Rate (%)"
+        ]
+    )
+
+    st.subheader("Average Inventory Comparison")
+
+    st.bar_chart(
+        simulation_data.set_index("Policy")[
+            "Average Inventory"
+        ]
+    )
+
+    st.success(
+        "The inventory-matched ABC policy reduced "
+        "stockout frequency by approximately 20.01% "
+        "while maintaining nearly identical "
+        "average inventory levels."
+    )
+
 
