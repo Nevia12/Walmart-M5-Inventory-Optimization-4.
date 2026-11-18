@@ -1335,3 +1335,76 @@ with tab_warehouse:
         "**Category C:** Lower-revenue products "
         "that may benefit from tighter inventory controls."
     )
+    
+    # ============================================
+    # WAREHOUSE DEMAND EDA
+    # ============================================
+
+    st.divider()
+    st.subheader("Warehouse Demand Analysis")
+
+    st.write(
+        "This exploratory analysis examines historical "
+        "demand patterns across ABC product categories. "
+        "The figures below summarize the earlier "
+        "full-period analysis."
+    )
+
+    eda_data = pd.DataFrame({
+        "ABC Category": ["A", "B", "C"],
+        "Average Daily Demand": [20.67, 6.72, 2.33],
+        "Demand Variability (CV)": [0.74, 1.00, 1.46],
+        "Zero-Demand Days (%)": [16.64, 28.55, 50.02]
+    })
+
+    st.dataframe(
+        eda_data,
+        hide_index=True,
+        use_container_width=True
+    )
+
+    st.subheader("Average Daily Demand")
+    st.bar_chart(
+        eda_data.set_index("ABC Category")[
+            "Average Daily Demand"
+        ]
+    )
+
+    st.subheader("Demand Variability")
+    st.bar_chart(
+        eda_data.set_index("ABC Category")[
+            "Demand Variability (CV)"
+        ]
+    )
+
+    st.subheader("Percentage of Zero-Demand Days")
+    st.bar_chart(
+        eda_data.set_index("ABC Category")[
+            "Zero-Demand Days (%)"
+        ]
+    )
+
+    st.markdown("### Key Findings")
+
+    st.write(
+        "**Category A:** Highest average daily demand "
+        "and relatively stable purchasing patterns."
+    )
+
+    st.write(
+        "**Category B:** Moderate demand with "
+        "greater variability than Category A."
+    )
+
+    st.write(
+        "**Category C:** Lowest average daily demand, "
+        "highest relative variability, and the "
+        "largest percentage of zero-demand days."
+    )
+
+    st.info(
+        "These demand characteristics help explain "
+        "why different product categories may require "
+        "different replenishment and safety-stock policies."
+    )
+
