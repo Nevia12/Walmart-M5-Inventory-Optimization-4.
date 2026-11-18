@@ -1281,3 +1281,57 @@ with tab_warehouse:
         "performance using historical Walmart M5 demand. "
         "They do not represent actual Walmart operations."
     )
+
+    # ============================================
+    # ABC INVENTORY CLASSIFICATION
+    # ============================================
+
+    st.divider()
+
+    st.subheader("ABC Inventory Classification")
+
+    st.write(
+        "Products were classified into A, B, and C "
+        "categories using their revenue contribution "
+        "during the training period."
+    )
+
+    abc_data = pd.DataFrame({
+        "ABC Category": ["A", "B", "C"],
+        "Number of Products": [1187, 882, 980]
+    })
+
+    abc_data["Percentage"] = (
+        abc_data["Number of Products"]
+        / abc_data["Number of Products"].sum()
+        * 100
+    ).round(2)
+
+    st.dataframe(
+        abc_data,
+        hide_index=True,
+        use_container_width=True
+    )
+
+    st.subheader("Product Distribution by ABC Category")
+
+    st.bar_chart(
+        abc_data.set_index("ABC Category")[
+            "Number of Products"
+        ]
+    )
+
+    st.write(
+        "**Category A:** Higher-revenue products "
+        "that receive greater inventory priority."
+    )
+
+    st.write(
+        "**Category B:** Moderate-revenue products "
+        "requiring balanced inventory management."
+    )
+
+    st.write(
+        "**Category C:** Lower-revenue products "
+        "that may benefit from tighter inventory controls."
+    )
