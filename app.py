@@ -1672,3 +1672,52 @@ with tab_warehouse:
         ]
     )
 
+    st.divider()
+
+    st.header("Business Findings and Recommendations")
+
+    st.write(
+        "The final holdout simulation demonstrates that the "
+        "proposed inventory-matched ABC replenishment policy "
+        "outperformed the traditional baseline."
+    )
+
+    col1, col2, col3 = st.columns(3)
+
+    col1.metric("Stockout Reduction", "20.01%")
+    col2.metric("Fill Rate Improvement", "+6.36 pp")
+    col3.metric("Inventory Difference", "+16 Units")
+
+    st.subheader("Key Findings")
+
+    st.markdown("""
+    - **Reduced Stockouts:** Stockout frequency decreased
+      from 26.15% to 20.92%.
+
+    - **Improved Customer Service:** Fill rate increased
+      from 74.21% to 80.57%.
+
+    - **Inventory Efficiency:** Average inventory remained
+      nearly identical between the two policies.
+
+    - **ABC Prioritization:** The proposed policy uses
+      product classifications to guide replenishment
+      decisions and safety stock allocation.
+    """)
+
+    st.subheader("Business Recommendation")
+
+    st.success(
+        "The simulation supports adopting the inventory-matched "
+        "ABC replenishment policy as a promising alternative "
+        "to the traditional baseline. It reduced simulated "
+        "stockouts and improved fill rates without a meaningful "
+        "increase in average inventory."
+    )
+
+    st.caption(
+        "Results are based on historical Walmart M5 demand "
+        "and simulated warehouse operations, not actual "
+        "Walmart inventory performance."
+    )
+
