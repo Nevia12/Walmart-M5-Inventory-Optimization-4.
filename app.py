@@ -1218,3 +1218,66 @@ with tab_anish:
         "dashboard contains the nine selected SKU-store "
         "combinations."
     )
+
+# ============================================
+# TAB 3: WAREHOUSE INVENTORY OPTIMIZATION
+# ============================================
+
+with tab_warehouse:
+
+    st.header("Centralized Warehouse Inventory Optimization")
+
+    st.write(
+        "This analysis consolidates Walmart M5 sales "
+        "from 10 stores into one centralized warehouse "
+        "and evaluates inventory replenishment policies."
+    )
+
+    st.subheader("Warehouse Overview")
+
+    col1, col2, col3 = st.columns(3)
+
+    with col1:
+        st.metric("Stores Consolidated", "10")
+
+    with col2:
+        st.metric("Unique Products", "3,049")
+
+    with col3:
+        st.metric("Supplier Lead Time", "7 Days")
+
+    st.divider()
+
+    st.subheader("Final Holdout Simulation Results")
+
+    st.write(
+        "The inventory-matched ABC replenishment policy "
+        "was compared with a traditional baseline using "
+        "a separate final testing period."
+    )
+
+    col1, col2, col3 = st.columns(3)
+
+    with col1:
+        st.metric(
+            "Stockout Reduction",
+            "20.01%"
+        )
+
+    with col2:
+        st.metric(
+            "Fill Rate Improvement",
+            "+6.36 pp"
+        )
+
+    with col3:
+        st.metric(
+            "Average Inventory Difference",
+            "+16 Units"
+        )
+
+    st.info(
+        "These results are based on simulated inventory "
+        "performance using historical Walmart M5 demand. "
+        "They do not represent actual Walmart operations."
+    )
