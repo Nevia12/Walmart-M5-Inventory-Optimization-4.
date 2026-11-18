@@ -16,10 +16,13 @@ st.divider()
 
 # Separate Nevia's existing single-SKU analysis
 # from Anish's expanded multi-SKU analysis.
-tab_nevia, tab_anish = st.tabs([
+
+tab_nevia, tab_anish, tab_warehouse = st.tabs([
     "Nevia | Single-SKU Analysis",
-    "Anish | Multi-SKU Analysis"
+    "Anish | Multi-SKU Analysis",
+    "Warehouse | Inventory Optimization"
 ])
+
 
 # ==================================================
 # TAB 1: NEVIA'S ORIGINAL SINGLE-SKU DASHBOARD
