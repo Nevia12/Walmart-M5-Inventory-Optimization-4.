@@ -1615,17 +1615,22 @@ with tab_warehouse:
         "while maintaining nearly identical "
         "average inventory levels."
     )
+# ==========================================
+# FINAL INVENTORY SIMULATION COMPARISON
+# ==========================================
+
 with tab_warehouse:
 
-    st.header("Warehouse Overview")
+    st.divider()
 
-    # Existing warehouse analysis code
-    # ...
+    st.header("Final Inventory Simulation Comparison")
 
-    st.subheader("How the Replenishment Policy Works")
+    st.write(
+        "This section compares the traditional inventory policy "
+        "with the proposed inventory-matched ABC policy using "
+        "the final holdout testing period."
+    )
 
-    # Existing explanation code
-    # ...
+    st.success("Final simulation comparison section loaded!")
 
-    st.subheader("Final Inventory Simulation Comparison")
 
