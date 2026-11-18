@@ -1615,5 +1615,17 @@ with tab_warehouse:
         "while maintaining nearly identical "
         "average inventory levels."
     )
+with tab_warehouse:
 
+    st.header("Warehouse Overview")
+
+    # Existing warehouse analysis code
+    # ...
+
+    st.subheader("How the Replenishment Policy Works")
+
+    # Existing explanation code
+    # ...
+
+    st.subheader("Final Inventory Simulation Comparison")
 
