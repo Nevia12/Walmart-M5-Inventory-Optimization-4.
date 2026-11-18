@@ -1407,4 +1407,76 @@ with tab_warehouse:
         "why different product categories may require "
         "different replenishment and safety-stock policies."
     )
+    
+    # ============================================
+    # INVENTORY REPLENISHMENT POLICY
+    # ============================================
+
+    st.divider()
+
+    st.subheader("Inventory Replenishment Policy")
+
+    st.write(
+        "The centralized warehouse uses a 7-day "
+        "supplier lead time. Safety stock, reorder "
+        "points, and order-up-to levels were calculated "
+        "using historical training-period demand."
+    )
+
+    policy_data = pd.DataFrame({
+        "ABC Category": ["A", "B", "C"],
+        "Products": [1187, 882, 980],
+        "Average Safety Stock": [60.86, 20.22, 8.25],
+        "Average Reorder Point": [210.45, 68.20, 21.92],
+        "Average Order-Up-To Level": [384.02, 123.33, 37.78]
+    })
+
+    st.dataframe(
+        policy_data,
+        hide_index=True,
+        use_container_width=True
+    )
+
+    st.subheader("Reorder Points by ABC Category")
+
+    st.bar_chart(
+        policy_data.set_index("ABC Category")[
+            "Average Reorder Point"
+        ]
+    )
+
+    st.subheader("Order-Up-To Levels by ABC Category")
+
+    st.bar_chart(
+        policy_data.set_index("ABC Category")[
+            "Average Order-Up-To Level"
+        ]
+    )
+
+    st.markdown("### How the Replenishment Policy Works")
+
+    st.write(
+        "**Safety Stock:** Extra inventory maintained "
+        "to protect against unexpected demand."
+    )
+
+    st.write(
+        "**Reorder Point:** The inventory position "
+        "at which a replenishment order is triggered."
+    )
+
+    st.write(
+        "**Order-Up-To Level:** The target inventory "
+        "position after replenishment."
+    )
+
+    st.info(
+        "The final inventory-matched ABC policy uses "
+        "a multiplier of 0.76, selected using the "
+        "validation period. This adjustment allowed "
+        "the proposed policy to be compared against "
+        "the traditional baseline at similar "
+        "average inventory levels."
+    )
+
 
