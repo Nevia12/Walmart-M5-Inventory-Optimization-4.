@@ -1721,3 +1721,18 @@ with tab_warehouse:
         "Walmart inventory performance."
     )
 
+    st.subheader("Final Holdout Performance by ABC Class")
+
+    abc_results = pd.read_csv("walmart_m5_final_holdout_by_abc.csv")
+    st.dataframe(abc_results.round(2), hide_index=True)
+
+    st.caption(
+        "Both policies were evaluated over the same 165 scored days. "
+        "ABC classes were assigned using training-period revenue."
+    )
+
+    st.write(
+        "Fill rates improved in all three classes. Category A accounted for "
+        "about 62% of the reduction in unmet units while carrying about "
+        "806 fewer units on average."
+    )
