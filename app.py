@@ -1479,142 +1479,6 @@ with tab_warehouse:
         "average inventory levels."
     )
 
-    # ============================================
-    # FINAL INVENTORY SIMULATION COMPARISON
-    # ============================================
-
-    st.divider()
-
-    st.subheader("Final Inventory Simulation Comparison")
-
-    st.write(
-        "The traditional baseline and inventory-matched "
-        "ABC replenishment policy were evaluated using "
-        "193 days of previously unseen demand data."
-    )
-
-    simulation_data = pd.DataFrame({
-        "Policy": [
-            "Traditional Baseline",
-            "Inventory-Matched ABC"
-        ],
-        "Stockout Frequency (%)": [26.15, 20.92],
-        "Fill Rate (%)": [74.21, 80.58],
-        "Average Inventory (Units)": [149107, 149123]
-    })
-
-    st.dataframe(
-        simulation_data,
-        hide_index=True,
-        use_container_width=True
-    )
-
-    st.subheader("Stockout Frequency Comparison")
-
-    st.bar_chart(
-        simulation_data.set_index("Policy")[
-            "Stockout Frequency (%)"
-        ]
-    )
-
-    st.subheader("Fill Rate Comparison")
-
-    st.bar_chart(
-        simulation_data.set_index("Policy")[
-            "Fill Rate (%)"
-        ]
-    )
-
-    st.subheader("Average Inventory Comparison")
-
-    st.bar_chart(
-        simulation_data.set_index("Policy")[
-            "Average Inventory (Units)"
-        ]
-    )
-
-    st.markdown("### Final Simulation Findings")
-
-    st.success(
-        "The inventory-matched ABC policy reduced "
-        "stockout frequency by approximately 20.01% "
-        "relative to the traditional baseline."
-    )
-
-    st.write(
-        "The proposed policy also improved the fill "
-        "rate by approximately 6.36 percentage points "
-        "while maintaining nearly identical average "
-        "inventory levels."
-    )
-
-    st.info(
-        "The inventory multiplier of 0.76 was selected "
-        "using the validation period, not the final "
-        "testing period. This helps prevent using "
-        "holdout results to tune the proposed policy."
-    )
-
-    # ============================================
-    # STEP 61: FINAL INVENTORY SIMULATION
-    # ============================================
-
-    st.divider()
-
-    st.subheader("Final Inventory Simulation Comparison")
-
-    st.write(
-        "The traditional baseline and proposed ABC "
-        "inventory policy were evaluated using "
-        "193 days of holdout testing data."
-    )
-
-    simulation_data = pd.DataFrame({
-        "Policy": [
-            "Traditional Baseline",
-            "Inventory-Matched ABC"
-        ],
-        "Stockout Frequency (%)": [26.15, 20.92],
-        "Fill Rate (%)": [74.21, 80.58],
-        "Average Inventory": [149107, 149123]
-    })
-
-    st.dataframe(
-        simulation_data,
-        hide_index=True,
-        use_container_width=True
-    )
-
-    st.subheader("Stockout Frequency Comparison")
-
-    st.bar_chart(
-        simulation_data.set_index("Policy")[
-            "Stockout Frequency (%)"
-        ]
-    )
-
-    st.subheader("Fill Rate Comparison")
-
-    st.bar_chart(
-        simulation_data.set_index("Policy")[
-            "Fill Rate (%)"
-        ]
-    )
-
-    st.subheader("Average Inventory Comparison")
-
-    st.bar_chart(
-        simulation_data.set_index("Policy")[
-            "Average Inventory"
-        ]
-    )
-
-    st.success(
-        "The inventory-matched ABC policy reduced "
-        "stockout frequency by approximately 20.01% "
-        "while maintaining nearly identical "
-        "average inventory levels."
-    )
 # ==========================================
 # FINAL INVENTORY SIMULATION COMPARISON
 # ==========================================
@@ -1630,9 +1494,6 @@ with tab_warehouse:
         "with the proposed inventory-matched ABC policy using "
         "the final holdout testing period."
     )
-
-    st.success("Final simulation comparison section loaded!")
-    # Final holdout simulation results
 
     st.subheader("Final Holdout Performance")
 
@@ -1670,6 +1531,22 @@ with tab_warehouse:
         final_results.set_index("Policy")[
             "Average Inventory"
         ]
+    )
+
+    st.subheader("Final Holdout Performance by ABC Class")
+
+    abc_results = pd.read_csv("walmart_m5_final_holdout_by_abc.csv")
+    st.dataframe(abc_results.round(2), hide_index=True)
+
+    st.caption(
+        "Both policies were evaluated over the same 165 scored days. "
+        "ABC classes were assigned using training-period revenue."
+    )
+
+    st.write(
+        "Fill rates improved in all three classes. Category A accounted for "
+        "about 62% of the reduction in unmet units while carrying about "
+        "806 fewer units on average."
     )
 
     st.divider()
@@ -1719,20 +1596,4 @@ with tab_warehouse:
         "Results are based on historical Walmart M5 demand "
         "and simulated warehouse operations, not actual "
         "Walmart inventory performance."
-    )
-
-    st.subheader("Final Holdout Performance by ABC Class")
-
-    abc_results = pd.read_csv("walmart_m5_final_holdout_by_abc.csv")
-    st.dataframe(abc_results.round(2), hide_index=True)
-
-    st.caption(
-        "Both policies were evaluated over the same 165 scored days. "
-        "ABC classes were assigned using training-period revenue."
-    )
-
-    st.write(
-        "Fill rates improved in all three classes. Category A accounted for "
-        "about 62% of the reduction in unmet units while carrying about "
-        "806 fewer units on average."
     )
